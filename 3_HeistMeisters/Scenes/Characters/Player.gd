@@ -2,10 +2,10 @@ extends "res://Scripts/Character.gd"
 
 var motion = Vector2()
 
-
 func _process(delta):
 	update_motion(delta)
 	move_and_slide(motion)
+	
 
 
 func update_motion(delta):
@@ -25,3 +25,14 @@ func update_motion(delta):
 	
 	else:
 		motion.y = lerp(motion.y, 0, FRICTION)
+
+func _input(event):
+	if Input.is_action_just_pressed("flashlight"):
+		toggle_torch()
+
+func toggle_torch():
+	if $Torch.enabled:
+		$Torch.enabled = false
+	else:
+		$Torch.enabled = true
+	
